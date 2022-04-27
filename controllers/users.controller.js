@@ -56,7 +56,7 @@ const updateUser = async (req, res) => {
     const { id } = req.params;
     const { name } = req.body;
     // await User.update({ name }, { where: { id } });
-    const user = await User.findOne({ name }, { where: { id } });
+    const user = await User.findOne({ where: { id } });
     if (!user) {
       return res.status(404).json({
         status: 'error',

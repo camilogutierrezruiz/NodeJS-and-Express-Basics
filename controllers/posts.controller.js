@@ -61,14 +61,14 @@ const updatePost = async (req, res) => {
 
     const { id } = req.params;
     const { title, content } = req.body;
-    const post = await Post.findOne({ title, content }, { where: { id } });
+    const post = await Post.findOne({ where: { id } });
     if (!post) {
       return res.status(404).json({
         status: 'error',
         message: 'Post no found. Cannot update'
       });
     };
-    const postUpdated = await Post.update({ title, content }, { where: { id } })
+    const postUpdated = await post.update({ title, content })
     res.status(200).json({
       postUpdated
     });
